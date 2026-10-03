@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#07111E">
+<title>AMOY Consultancy</title>
+<meta name="description" content="">
+<link rel="icon" href="assets/favicon.ico">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07111E;--bg2:#0B1A2C;--card:#0F2035;--line:#1C3149;--tx:#E7EEF6;--mute:#8CA0B5;--teal:#4FD1C5;--sand:#E8CF98}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 1rem/1.7 Manrope,'IBM Plex Sans Arabic',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+[dir=rtl] body{font-family:'IBM Plex Sans Arabic',Manrope,system-ui,sans-serif}
+h1,h2,h3,p{margin:0}
+h1,h2{font:400 clamp(2.4rem,6.4vw,5rem)/1.04 Newsreader,'IBM Plex Sans Arabic',Georgia,serif;letter-spacing:-.02em}
+h2{font-size:clamp(1.9rem,4.2vw,3.2rem);max-width:20ch}
+[dir=rtl] h1,[dir=rtl] h2{font-family:'IBM Plex Sans Arabic',sans-serif;font-weight:600;letter-spacing:0;line-height:1.35}
+em{font-style:italic;color:var(--teal)}
+[dir=rtl] em{font-style:normal}
+h3{font:600 1.15rem/1.3 Manrope,'IBM Plex Sans Arabic',sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.mono{font:500 .78rem 'JetBrains Mono',monospace;color:var(--sand);letter-spacing:.04em}
+
+/* moving wallpaper */
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.orb{position:fixed;z-index:0;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.55}
+.o1{width:46vmax;height:46vmax;top:-18vmax;inset-inline-end:-12vmax;background:radial-gradient(circle,rgba(79,209,197,.35),transparent 65%);animation:d1 26s ease-in-out infinite alternate}
+.o2{width:40vmax;height:40vmax;bottom:-16vmax;inset-inline-start:-12vmax;background:radial-gradient(circle,rgba(37,99,235,.35),transparent 65%);animation:d2 32s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(-14vmax,16vmax) scale(1.15)}}
+@keyframes d2{to{transform:translate(16vmax,-12vmax) scale(1.1)}}
+#pg{position:fixed;top:0;inset-inline:0;height:2px;background:linear-gradient(90deg,var(--teal),var(--sand));transform-origin:0 50%;transform:scaleX(0);z-index:20}
+[dir=rtl] #pg{transform-origin:100% 50%}
+header,main,footer{position:relative;z-index:1}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(7,17,30,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:14px 26px;flex-wrap:wrap;min-height:68px;padding-block:8px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:1.1rem}
+.brand img{height:36px;width:auto}
+.bm{display:none;place-items:center;width:36px;height:36px;border-radius:9px;background:var(--teal);color:var(--bg);font-weight:800}
+.brand i{font-style:normal;color:var(--mute);font-weight:500}
+nav{display:flex;gap:26px;margin-inline-start:auto;font-size:.9rem;color:var(--mute)}
+nav a{text-decoration:none;position:relative;padding-block:4px}
+nav a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:1px;background:var(--teal);transform:scaleX(0);transition:transform .3s}
+nav a:hover{color:var(--tx)}nav a:hover::after{transform:scaleX(1)}
+.pill{display:flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:99px;font-size:.8rem;text-decoration:none}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--teal);animation:pu 2s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(79,209,197,.5)}100%{box-shadow:0 0 0 10px rgba(79,209,197,0)}}
+.lang{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.lang button{border:0;background:none;padding:6px 10px;font:600 .78rem Manrope,sans-serif;color:var(--mute);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--tx);color:var(--bg)}
+@media(max-width:900px){nav{order:5;width:100%;margin:0;overflow-x:auto;white-space:nowrap}.pill{display:none}.lang{margin-inline-start:auto}}
+
+/* reveal */
+html.js .rv{opacity:0;transform:translateY(30px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+html.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html.js .rv{opacity:1;transform:none;transition:none}.o1,.o2,.pill::before{animation:none}html{scroll-behavior:auto}}
+
+/* hero */
+.hero{min-height:calc(100svh - 68px);display:flex;align-items:center;padding:80px 0}
+.hero .mono{display:block;margin-bottom:26px}
+.hero h1{max-width:15ch}
+[dir=rtl] .hero h1{max-width:20ch}
+.hero p.sub{margin:30px 0 38px;max-width:54ch;font-size:1.18rem;color:var(--mute)}
+.acts{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 26px;border-radius:8px;background:var(--teal);color:var(--bg);font:700 .95rem Manrope,'IBM Plex Sans Arabic',sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{background:#7FE3D9;transform:translateY(-2px)}
+.btn.o{background:none;color:var(--tx);border:1px solid var(--line)}.btn.o:hover{border-color:var(--teal);background:none}
+
+/* ticker */
+.ticker{direction:ltr;overflow:hidden;border-block:1px solid var(--line);background:rgba(11,26,44,.7);backdrop-filter:blur(6px);padding:16px 0}
+.track{display:flex;gap:44px;width:max-content;animation:tk 70s linear infinite;color:var(--mute);font-size:.95rem;white-space:nowrap}
+.track span::after{content:"·";margin-inline-start:44px;color:var(--teal)}
+@keyframes tk{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.track{animation:none}}
+
+/* sections */
+section{padding:100px 0;border-bottom:1px solid var(--line)}
+section.alt{background:rgba(11,26,44,.6);backdrop-filter:blur(6px)}
+.head{display:grid;gap:14px;margin-bottom:46px}
+.lead{max-width:60ch;color:var(--mute);font-size:1.05rem}
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:960px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:rgba(15,32,53,.82);border:1px solid var(--line);border-radius:14px;padding:30px}
+.card p{margin-top:8px;color:var(--mute);font-size:.95rem}
+.pr{border-top:2px solid var(--teal);border-radius:0 0 14px 14px}
+
+/* services */
+.sv{position:relative;overflow:hidden;padding:36px;transition:transform .3s,border-color .3s}
+.sv::before{content:"";position:absolute;inset:0;background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),rgba(79,209,197,.17),transparent 60%);opacity:0;transition:opacity .3s}
+.sv:hover{transform:translateY(-4px);border-color:#2B5A66}.sv:hover::before{opacity:1}
+.sv>*{position:relative}
+.sv .n{display:block;font:400 3.4rem/1 Newsreader,serif;color:var(--sand);margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chips span{font-size:.8rem;color:var(--teal);border:1px solid #1F5A56;border-radius:99px;padding:4px 13px;background:rgba(79,209,197,.06)}
+
+/* mentors */
+.ment{text-align:center}
+.av{position:relative;width:82px;height:82px;margin:0 auto 16px;border-radius:50%;background:#12304A;color:var(--teal);display:grid;place-items:center;font-weight:700;overflow:hidden}
+.av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ment h3{font-size:.98rem}.ment p{font-size:.86rem}
+
+/* contact */
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px}
+form .f{grid-column:1/-1}
+@media(max-width:620px){form{grid-template-columns:1fr}}
+label{display:block;font-size:.82rem;color:var(--mute);margin-bottom:6px}
+input,select,textarea{width:100%;padding:13px 14px;background:rgba(15,32,53,.9);border:1px solid var(--line);border-radius:8px;color:var(--tx);font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--teal);border-color:var(--teal)}
+form small{color:var(--mute);align-self:center}
+footer{padding:30px 0;color:var(--mute);font-size:.88rem;background:rgba(7,17,30,.8)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="orb o1" aria-hidden="true"></div><div class="orb o2" aria-hidden="true"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="pg"></div>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <img src="assets/logo.png" alt="AMOY" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+      <span class="bm">A</span><span>AMOY <i>Consultancy</i></span>
+    </a>
+    <nav aria-label="Main"><a href="#services" data-i="n1"></a><a href="#approach" data-i="n2"></a><a href="#mentors" data-i="n3"></a><a href="#contact" data-i="n4"></a></nav>
+    <a class="pill" href="#contact" data-i="pill"></a>
+    <div class="lang" role="group" aria-label="Language"><button data-l="en" title="English">EN</button><button data-l="tr" title="Türkçe">TR</button><button data-l="ar" title="العربية">AR</button></div>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap">
+    <span class="mono rv" data-i="eyebrow"></span>
+    <h1 class="rv" style="--d:.1s" data-i="h1" data-h></h1>
+    <p class="sub rv" style="--d:.25s" data-i="hsub"></p>
+    <div class="acts rv" style="--d:.4s"><a class="btn" href="#contact" data-i="hb1"></a><a class="btn o" href="#services" data-i="hb2"></a></div>
+  </div>
+</div>
+<div class="ticker" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="head rv"><span class="mono">01 / 04</span><h2 data-i="s_t" data-h></h2></div>
+    <div class="grid g2">
+      <article class="card sv rv"><span class="n">A</span><h3 data-i="sA_t"></h3><p data-i="sA_d"></p><div class="chips"><span data-i="a1"></span><span data-i="a2"></span></div></article>
+      <article class="card sv rv" style="--d:.1s"><span class="n">B</span><h3 data-i="sB_t"></h3><p data-i="sB_d"></p><div class="chips"><span data-i="b1"></span><span data-i="b2"></span></div></article>
+      <article class="card sv rv"><span class="n">C</span><h3 data-i="sC_t"></h3><p data-i="sC_d"></p><div class="chips"><span data-i="c1"></span><span data-i="c2"></span></div></article>
+      <article class="card sv rv" style="--d:.1s"><span class="n">D</span><h3 data-i="sD_t"></h3><p data-i="sD_d"></p><div class="chips"><span data-i="d1"></span><span data-i="d2"></span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="alt">
+  <div class="wrap">
+    <div class="head rv"><span class="mono">02 / 04</span><h2 data-i="pc_t" data-h></h2><p class="lead" data-i="pc_s"></p></div>
+    <div class="grid g3">
+      <article class="card pr rv"><h3 data-i="pc1_t"></h3><p data-i="pc1_d"></p></article>
+      <article class="card pr rv" style="--d:.1s"><h3 data-i="pc2_t"></h3><p data-i="pc2_d"></p></article>
+      <article class="card pr rv" style="--d:.2s"><h3 data-i="pc3_t"></h3><p data-i="pc3_d"></p></article>
+    </div>
+  </div>
+</section>
+
+<section id="mentors">
+  <div class="wrap">
+    <div class="head rv"><span class="mono">03 / 04</span><h2 data-i="me_t" data-h></h2><p class="lead" data-i="me_s"></p></div>
+    <div class="grid g4">
+      <article class="card ment rv"><div class="av"><span>EG</span><img src="assets/mentors/ender-gurgen.jpg" alt="" onerror="this.remove()"></div><h3>Dr. Öğr. Üyesi Ender Gürgen</h3><p data-i="me1"></p></article>
+      <article class="card ment rv" style="--d:.08s"><div class="av"><span>TA</span><img src="assets/mentors/tevfik-aytemiz.jpg" alt="" onerror="this.remove()"></div><h3>Prof. Dr. Tevfik Aytemiz</h3><p data-i="me2"></p></article>
+      <article class="card ment rv" style="--d:.16s"><div class="av"><span>AŞ</span><img src="assets/mentors/ayse-sahin.jpg" alt="" onerror="this.remove()"></div><h3>Prof. Dr. Ayşe Şahin</h3><p data-i="me3"></p></article>
+      <article class="card ment rv" style="--d:.24s"><div class="av"><span>ÜD</span><img src="assets/mentors/umit-dogrul.jpg" alt="" onerror="this.remove()"></div><h3>Doç. Dr. Ümit Doğrul</h3><p data-i="me4"></p></article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="wrap">
+    <div class="head rv"><span class="mono">04 / 04</span><h2 data-i="c_t" data-h></h2><p class="lead" data-i="c_s"></p></div>
+    <form id="f" class="rv">
+      <div><label for="n" data-i="f1"></label><input id="n" required autocomplete="name"></div>
+      <div><label for="c" data-i="f2"></label><input id="c" required autocomplete="organization"></div>
+      <div class="f"><label for="e" data-i="f3"></label><input id="e" type="email" required autocomplete="email"></div>
+      <div class="f"><label for="t" data-i="f4"></label><select id="t"><option data-i="o1"></option><option data-i="o2"></option><option data-i="o3"></option><option data-i="o4"></option><option data-i="o5"></option></select></div>
+      <div class="f"><label for="m" data-i="f5"></label><textarea id="m" rows="4"></textarea></div>
+      <button class="btn" type="submit" data-i="f6"></button><small data-i="f7"></small>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 AMOY Consultancy · <span data-i="ft1"></span></span><span data-i="ft2"></span></div></footer>
+
+<script>
+const MAIL='your-email@example.com'; // TODO: replace with your real address
+const T={
+en:{title:'AMOY Consultancy | Digital solutions for Mersin SMEs',desc:'AMOY Consultancy, a Mersin University student consulting community, fixes workflow, sales and data bottlenecks for SMEs.',
+n1:'Services',n2:'Why AMOY',n3:'Mentors',n4:'Contact',pill:'First diagnostic is free',eyebrow:'Student consulting · Mersin, Türkiye',
+h1:'Academic rigor, <em>practically</em> executed.',hsub:'Practical digital solutions for Mersin SMEs: affordable, proven with before-and-after numbers, and delivered by a local team backed by university method.',hb1:'Book your free diagnostic',hb2:'View services',
+s_t:'Four services, built around real <em>business problems</em>.',
+sA_t:'Workflow & Operations Digitization',sA_d:'Replace paper tracking and guesswork with a clear, digital view of how work moves through your business.',a1:'Paper-to-cloud tracking',a2:'DMAIC process mapping',
+sB_t:'Lightweight CRM & Inquiry Pipeline',sB_d:'Make sure no customer inquiry is lost, forgotten or answered too late.',b1:'Quote tracking',b2:'Centralized customer database',
+sC_t:'Power BI Executive Dashboards',sC_d:'See the numbers that matter in one place, updated automatically.',c1:'Automated KPI tracking',c2:'Margin & inventory visibility',
+sD_t:'Digital Presence & Channel Diagnostic',sD_d:'Find out how local B2B customers discover you and where they give up.',d1:'Local B2B discoverability',d2:'Touchpoint friction analysis',
+pc_t:'Built for Mersin SMEs, <em>measured</em> in results.',pc_s:'AMOY pairs university-level method with hands-on delivery. Every project starts from your data, not assumptions.',
+pc1_t:'Local to Mersin',pc1_d:'Based at Mersin University, close to the businesses we serve and easy to meet in person.',pc2_t:'Affordable for small SMEs',pc2_d:'Small, focused projects priced for small budgets, not large retainers.',pc3_t:'Measured before and after',pc3_d:'We record a baseline first, then show you the change in your own numbers.',
+me_t:'Reviewed by Mersin University <em>faculty</em>.',me_s:'Mentors review our methods and the quality of our work.',
+me1:'Operations & production',me2:'Quantitative methods',me3:'Marketing & customer behavior',me4:'Services marketing & research',
+c_t:'Start with a <em>free</em> diagnostic.',c_s:'Tell us what slows your business. Your first diagnostic is free, and we reply within 24 hours.',f1:'Name',f2:'Company',f3:'Email',f4:'What do you need?',o1:'Operations & workflow',o2:'Sales & CRM',o3:'Data & dashboards',o4:'Marketing & channels',o5:'Something else',f5:'Your challenge',f6:'Request free diagnostic',f7:'Opens your email app to send the request.',
+ft1:'A student consulting community at Mersin University.',ft2:'Çiftlikköy Campus, Mersin, Türkiye'},
+tr:{title:'AMOY Consultancy | Mersin KOBİ’leri için dijital çözümler',desc:'Mersin Üniversitesi öğrenci danışmanlık topluluğu AMOY Consultancy, KOBİ’lerin iş akışı, satış ve veri darboğazlarını çözer.',
+n1:'Hizmetler',n2:'Neden AMOY',n3:'Danışmanlar',n4:'İletişim',pill:'İlk teşhis ücretsiz',eyebrow:'Öğrenci danışmanlığı · Mersin, Türkiye',
+h1:'Akademik titizlik, <em>pratikte</em> uygulanır.',hsub:'Mersin KOBİ’leri için pratik dijital çözümler: uygun maliyetli, öncesi ve sonrası rakamlarla kanıtlanmış ve üniversite yöntemiyle desteklenen yerel bir ekipten.',hb1:'Ücretsiz teşhisinizi alın',hb2:'Hizmetleri görün',
+s_t:'Gerçek <em>iş sorunlarına</em> göre tasarlanmış dört hizmet.',
+sA_t:'İş Akışı ve Operasyon Dijitalleştirme',sA_d:'Kâğıt takibini ve tahmini, işin işletmenizde nasıl aktığını gösteren net bir dijital görünümle değiştirin.',a1:'Kâğıttan buluta takip',a2:'DMAIC süreç haritalama',
+sB_t:'Hafif CRM ve Talep Hattı',sB_d:'Hiçbir müşteri talebi kaybolmasın, unutulmasın veya geç yanıtlanmasın.',b1:'Teklif takibi',b2:'Merkezi müşteri veri tabanı',
+sC_t:'Power BI Yönetici Panelleri',sC_d:'Önemli rakamları tek yerde, otomatik güncellenen biçimde görün.',c1:'Otomatik KPI takibi',c2:'Marj ve stok görünürlüğü',
+sD_t:'Dijital Varlık ve Kanal Teşhisi',sD_d:'Yerel B2B müşterilerinin sizi nasıl bulduğunu ve nerede vazgeçtiğini öğrenin.',d1:'Yerel B2B bulunabilirlik',d2:'Temas noktası sürtünme analizi',
+pc_t:'Mersin KOBİ’leri için tasarlandı, sonuçlarla <em>ölçülür</em>.',pc_s:'AMOY, üniversite düzeyinde yöntemi sahada uygulamayla birleştirir. Her proje varsayımlarla değil, sizin verilerinizle başlar.',
+pc1_t:'Mersin’e yerel',pc1_d:'Mersin Üniversitesi’nde, hizmet verdiğimiz işletmelere yakınız; yüz yüze görüşmek kolaydır.',pc2_t:'Küçük KOBİ’ler için uygun fiyatlı',pc2_d:'Büyük sözleşmeler değil, küçük bütçelere göre fiyatlanan küçük ve odaklı projeler.',pc3_t:'Öncesi ve sonrası ölçülür',pc3_d:'Önce başlangıç değerini kaydeder, değişimi sizin rakamlarınızla gösteririz.',
+me_t:'Mersin Üniversitesi <em>öğretim üyelerince</em> gözden geçirilir.',me_s:'Danışmanlar yöntemlerimizi ve çalışmalarımızın kalitesini gözden geçirir.',
+me1:'Operasyon ve üretim',me2:'Sayısal yöntemler',me3:'Pazarlama ve tüketici davranışı',me4:'Hizmet pazarlaması ve araştırma',
+c_t:'<em>Ücretsiz</em> bir teşhisle başlayın.',c_s:'İşinizi yavaşlatan şeyi anlatın. İlk teşhisiniz ücretsizdir; 24 saat içinde yanıtlarız.',f1:'Ad Soyad',f2:'Şirket',f3:'E-posta',f4:'Neye ihtiyacınız var?',o1:'Operasyon ve iş akışı',o2:'Satış ve CRM',o3:'Veri ve panolar',o4:'Pazarlama ve kanallar',o5:'Başka bir konu',f5:'Sorununuz',f6:'Ücretsiz teşhis iste',f7:'Talebi göndermek için e-posta uygulamanız açılır.',
+ft1:'Mersin Üniversitesi bünyesinde bir öğrenci danışmanlık topluluğu.',ft2:'Çiftlikköy Kampüsü, Mersin, Türkiye'},
+ar:{title:'AMOY Consultancy | حلول رقمية للمنشآت الصغيرة في مرسين',desc:'AMOY Consultancy مجتمع استشاري طلابي في جامعة مرسين يعالج اختناقات سير العمل والمبيعات والبيانات للمنشآت الصغيرة.',
+n1:'الخدمات',n2:'لماذا AMOY',n3:'المرشدون',n4:'تواصل',pill:'التشخيص الأول مجاني',eyebrow:'استشارات طلابية · مرسين، تركيا',
+h1:'الدقة الأكاديمية، تُنفَّذ <em>عمليًا</em>.',hsub:'حلول رقمية عملية للمنشآت الصغيرة في مرسين: بتكلفة مناسبة، وتُثبت نتائجها بأرقام قبل وبعد، من فريق محلي مدعوم بمنهجية جامعية.',hb1:'احجز تشخيصك المجاني',hb2:'استعرض الخدمات',
+s_t:'أربع خدمات مبنية على <em>مشكلات أعمال</em> حقيقية.',
+sA_t:'رقمنة سير العمل والعمليات',sA_d:'استبدل التتبع الورقي والتخمين برؤية رقمية واضحة لكيفية انتقال العمل داخل منشأتك.',a1:'من التتبع الورقي إلى السحابة',a2:'رسم العمليات بمنهجية DMAIC',
+sB_t:'نظام CRM خفيف ومسار الاستفسارات',sB_d:'احرص على ألا يضيع أي استفسار من عميل أو يُنسى أو يُجاب عنه متأخرًا.',b1:'تتبع عروض الأسعار',b2:'قاعدة بيانات عملاء موحّدة',
+sC_t:'لوحات Power BI للإدارة',sC_d:'شاهد الأرقام المهمة في مكان واحد، وتتحدث تلقائيًا.',c1:'تتبع تلقائي لمؤشرات الأداء',c2:'رؤية الهامش والمخزون',
+sD_t:'تشخيص الحضور الرقمي والقنوات',sD_d:'اكتشف كيف يجدك عملاء B2B المحليون وأين يتوقفون.',d1:'ظهور محلي لعملاء B2B',d2:'تحليل عقبات نقاط التواصل',
+pc_t:'مصمَّمة لمنشآت مرسين، وتُقاس <em>بالنتائج</em>.',pc_s:'تجمع AMOY بين منهجية جامعية وتنفيذ ميداني. يبدأ كل مشروع من بياناتك لا من الافتراضات.',
+pc1_t:'محليون في مرسين',pc1_d:'مقرنا في جامعة مرسين، قريبون من الشركات التي نخدمها، ويسهل اللقاء وجهًا لوجه.',pc2_t:'بتكلفة مناسبة للمنشآت الصغيرة',pc2_d:'مشاريع صغيرة ومركّزة بأسعار تناسب الميزانيات الصغيرة، لا عقود كبيرة.',pc3_t:'قياس قبل وبعد',pc3_d:'نسجل خط الأساس أولًا، ثم نريك التغيير في أرقامك أنت.',
+me_t:'بمراجعة <em>أعضاء هيئة التدريس</em> في جامعة مرسين.',me_s:'يراجع المرشدون منهجيتنا وجودة عملنا.',
+me1:'العمليات والإنتاج',me2:'الأساليب الكمية',me3:'التسويق وسلوك العملاء',me4:'تسويق الخدمات والأبحاث',
+c_t:'ابدأ بتشخيص <em>مجاني</em>.',c_s:'أخبرنا بما يبطئ عملك. التشخيص الأول مجاني، ونردّ خلال 24 ساعة.',f1:'الاسم',f2:'الشركة',f3:'البريد الإلكتروني',f4:'ما الذي تحتاجه؟',o1:'العمليات وسير العمل',o2:'المبيعات وCRM',o3:'البيانات واللوحات',o4:'التسويق والقنوات',o5:'أمر آخر',f5:'التحدي الذي تواجهه',f6:'اطلب التشخيص المجاني',f7:'سيفتح تطبيق البريد لإرسال الطلب.',
+ft1:'مجتمع استشاري طلابي في جامعة مرسين.',ft2:'حرم Çiftlikköy، مرسين، تركيا'}
+};
+// ticker
+const tk=['sA_t','a1','a2','sB_t','b1','b2','sC_t','c1','c2','sD_t','d1','d2'];
+document.getElementById('track').innerHTML=[0,1].map(()=>tk.map(k=>`<span data-i="${k}"></span>`).join('')).join('');
+let cur='en';
+function setLang(l){
+  cur=l;const t=T[l],d=document.documentElement;
+  d.lang=l;d.dir=l==='ar'?'rtl':'ltr';document.title=t.title;
+  document.querySelector('meta[name=description]').content=t.desc;
+  document.querySelectorAll('[data-i]').forEach(e=>{const v=t[e.dataset.i];e.dataset.h!==undefined?e.innerHTML=v:e.textContent=v});
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.l===l));
+  try{localStorage.setItem('amoy-lang',l)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.l)));
+let s='en';
+try{s=new URLSearchParams(location.search).get('lang')||localStorage.getItem('amoy-lang')||(navigator.language||'en').slice(0,2)}catch(e){}
+setLang(T[s]?s:'en');
+
+// scroll reveal + progress bar
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+const pg=document.getElementById('pg');
+addEventListener('scroll',()=>{pg.style.transform=`scaleX(${scrollY/Math.max(1,document.body.scrollHeight-innerHeight)})`},{passive:true});
+
+// service card spotlight
+document.querySelectorAll('.sv').forEach(c=>c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')}));
+
+// moving network wallpaper
+(()=>{
+  const c=document.getElementById('bg'),x=c.getContext('2d'),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let w,h,P=[],m={x:-999,y:-999};
+  function size(){
+    const d=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+    P=Array.from({length:Math.round(Math.min(95,w*h/15000))},(_,i)=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*1.5+.8,s:i%8===0}));
+  }
+  function frame(){
+    x.clearRect(0,0,w,h);
+    for(const p of P){
+      p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+      const dx=p.x-m.x,dy=p.y-m.y;if(dx*dx+dy*dy<14000){p.x+=dx*.01;p.y+=dy*.01}
+    }
+    for(let i=0;i<P.length;i++){
+      const a=P[i];x.fillStyle=a.s?'rgba(232,207,152,.85)':'rgba(79,209,197,.75)';
+      x.beginPath();x.arc(a.x,a.y,a.r,0,6.283);x.fill();
+      for(let j=i+1;j<P.length;j++){
+        const b=P[j],dx=a.x-b.x,dy=a.y-b.y,d=dx*dx+dy*dy;
+        if(d<24000){x.strokeStyle=`rgba(79,209,197,${.2*(1-d/24000)})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}
+      }
+      const mx=a.x-m.x,my=a.y-m.y,md=mx*mx+my*my;
+      if(md<30000){x.strokeStyle=`rgba(232,207,152,${.35*(1-md/30000)})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(m.x,m.y);x.stroke()}
+    }
+    if(!rm)requestAnimationFrame(frame);
+  }
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{size();if(rm)frame()},150)});
+  addEventListener('pointermove',e=>{m.x=e.clientX;m.y=e.clientY},{passive:true});
+  addEventListener('pointerleave',()=>{m.x=m.y=-999});
+  size();frame();
+})();
+
+// contact form
+document.getElementById('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=id=>document.getElementById(id),x=T[cur];
+  const body=`${x.f1}: ${v('n').value}\n${x.f2}: ${v('c').value}\n${x.f3}: ${v('e').value}\n${x.f4} ${v('t').selectedOptions[0].textContent}\n\n${v('m').value}`;
+  location.href=`mailto:${MAIL}?subject=${encodeURIComponent('AMOY free diagnostic request')}&body=${encodeURIComponent(body)}`;
+});
+</script>
+</body>
+</html>
